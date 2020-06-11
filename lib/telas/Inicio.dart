@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube/model/Video.dart';
-
+import 'package:flutter_youtube/flutter_youtube.dart';
 import '../Api.dart';
 
 class Inicio extends StatefulWidget {
@@ -41,23 +41,32 @@ class _InicioState extends State<Inicio> {
 
                     Video video = videos[ index ];
 
-                    return Column(
-                      children: <Widget>[
-                        Container(
-                        // daria para pegat o height da propria imagem
-                         height: 180,
-                         decoration: BoxDecoration(
-                           image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage( video.imagem )
-                           ),
-                         )
-                        ),
-                        ListTile(
-                          title: Text( video.titulo ),
-                          subtitle: Text( video.canal),
-                        )
-                      ],
+                    return GestureDetector(
+                      onTap: (){
+                        FlutterYoutube.playYoutubeVideoById(
+                          apiKey: API_CREDENTIAL_KEY,
+                          videoId: video.id,
+                          autoPlay: true
+                        );
+                      },
+                      child: Column(
+                            children: <Widget>[
+                              Container(
+                              // daria para pegat o height da propria imagem
+                              height: 180,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage( video.imagem )
+                                ),
+                              )
+                              ),
+                              ListTile(
+                                title: Text( video.titulo ),
+                                subtitle: Text( video.canal),
+                              )
+                            ],
+                          )
                     );
                   },
                   separatorBuilder: ( context, index ) => Divider(
