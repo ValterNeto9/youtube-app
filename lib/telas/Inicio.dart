@@ -4,21 +4,26 @@ import 'package:youtube/model/Video.dart';
 import '../Api.dart';
 
 class Inicio extends StatefulWidget {
+
+  String query = "";
+
+  Inicio( this.query );
+
   @override
   _InicioState createState() => _InicioState();
 }
 
 class _InicioState extends State<Inicio> {
   
-  _listarVideos(){
+  _listarVideos( String query ){
     Api api = Api();
-    return api.pesquisar("");
+    return api.pesquisar( query );
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Video>>(
-      future: _listarVideos(),
+      future: _listarVideos( widget.query ),
       builder: (context, snapshot){
         switch ( snapshot.connectionState ) {
           case ConnectionState.none:

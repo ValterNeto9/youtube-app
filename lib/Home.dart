@@ -12,16 +12,19 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var _indexSelected = 0;
+  String _query = "";
   
-  List<Widget> telas = [
-    Inicio(),
-    EmAlta(),
-    Inscricoes(),
-    Biblioteca()
-  ];
 
   @override
   Widget build(BuildContext context) {
+  
+    List<Widget> telas = [
+      Inicio( _query ),
+      EmAlta(),
+      Inscricoes(),
+      Biblioteca()
+    ];
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
@@ -36,7 +39,9 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.search),
                 onPressed: () async {
                   var query = await showSearch(context: context, delegate: CustomSearchDelegate());
-                  print("pesquisa: $query");
+                  setState(() {
+                    _query = query;
+                  });
                 }),
           ],
       ),
