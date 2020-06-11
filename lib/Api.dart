@@ -1,9 +1,10 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'data-api.dart';
 import 'model/Video.dart';
 
-const API_CREDENTIAL_KEY = 'AIzaSyAOjJjpU2eKrLisSrlfnbLrwq9FaUpug48';
+const API_CREDENTIAL_KEY = DataAPI.API_KEY_CREDENTIALS;
 const KEY_CHANNEL = 'UCVHFbqXqoYvEWM1Ddxl0QDg';
 const URL_BASE = 'https://www.googleapis.com/youtube/v3';
 
